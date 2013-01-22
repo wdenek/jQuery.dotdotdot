@@ -1,7 +1,7 @@
 /*	
- *	jQuery dotdotdot 1.5.3
+ *	jQuery dotdotdot 1.5.5
  *	
- *	Copyright (c) 2012 Fred Heusschen
+ *	Copyright (c) 2013 Fred Heusschen
  *	www.frebsite.nl
  *
  *	Plugin website:
@@ -329,10 +329,7 @@
 			$elem.append( $e );
 			if ( after )
 			{
-				var func = ( $elem.is( notx ) )
-					? 'after'
-					: 'append';
-				$elem[ func ]( after );
+				$elem[ ( $elem.is( notx ) ) ? 'after' : 'append' ]( after );
 			}
 			if ( e.nodeType == 3 )
 			{
@@ -386,19 +383,19 @@
 
 			if ( !test( $i, o ) )
 			{
-				position	= midPos;
-				startPos	= midPos; 
+				position = midPos;
+				startPos = midPos; 
 			}
 			else
 			{
-				endPos		= midPos;
+				endPos = midPos;
 			}				
 		}	
 	
 		if ( position != -1 )
 		{
 			var txt = addEllipsis( textArr.slice( 0, position + 1 ).join( seporator ), o );
-			
+
 			isTruncated = true;
 			setTextContent( e, txt );
 		}
@@ -407,20 +404,20 @@
 			var $w = $e.parent();
 			$e.remove();
 
-			if ( $w.contents().size() > 0 )
+			var afterLength = ( after ) ? after.length : 0 ;
+
+			if ( $w.contents().size() > afterLength )
 			{
-				var $n = $w.contents().eq( -1 );
+				var $n = $w.contents().eq( -1 - afterLength );
 				isTruncated = ellipsisElement( $n, $d, $i, o, after );
 			}
 			else
 			{
-				if ( true )
-				{
-					var e = $w.prev().contents().eq( -1 )[ 0 ],
-						txt = addEllipsis( getTextContent( e ), o );
+				var e = $w.prev().contents().eq( -1 )[ 0 ],
+					txt = addEllipsis( getTextContent( e ), o );
 
-					setTextContent( e, txt );
-				}
+				setTextContent( e, txt );
+
 				isTruncated = true;
 				$w.remove();
 			}
