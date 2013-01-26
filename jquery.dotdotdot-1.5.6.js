@@ -1,5 +1,5 @@
 /*	
- *	jQuery dotdotdot 1.5.5
+ *	jQuery dotdotdot 1.5.6
  *	
  *	Copyright (c) 2013 Fred Heusschen
  *	www.frebsite.nl
@@ -392,10 +392,9 @@
 			}				
 		}	
 	
-		if ( position != -1 )
+		if ( position != -1 && !( textArr.length == 1 && textArr[ 0 ].length == 0 ) )
 		{
 			var txt = addEllipsis( textArr.slice( 0, position + 1 ).join( seporator ), o );
-
 			isTruncated = true;
 			setTextContent( e, txt );
 		}
@@ -413,13 +412,16 @@
 			}
 			else
 			{
-				var e = $w.prev().contents().eq( -1 )[ 0 ],
-					txt = addEllipsis( getTextContent( e ), o );
+				var e = $w.prev().contents().eq( -1 )[ 0 ];
 
-				setTextContent( e, txt );
+				if ( typeof e != 'undefined' )
+				{
+					var txt = addEllipsis( getTextContent( e ), o );
+					setTextContent( e, txt );
+					$w.remove();
+					isTruncated = true;
+				}
 
-				isTruncated = true;
-				$w.remove();
 			}
 		}
 
@@ -538,9 +540,12 @@
 			m = [ 'dotdotdot:', m ];
 		}
 
-		if ( window.console && window.console.log )
+		if ( typeof window.console != 'undefined' )
 		{
-			window.console.log( m );
+			if ( typeof window.console.log != 'undefined' )
+			{
+				window.console.log( m );
+			}
 		}
 		return false;
 	}
