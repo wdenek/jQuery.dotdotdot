@@ -1,5 +1,5 @@
 /*	
- *	jQuery dotdotdot 1.5.6
+ *	jQuery dotdotdot 1.5.7
  *	
  *	Copyright (c) 2013 Fred Heusschen
  *	www.frebsite.nl
@@ -12,7 +12,6 @@
  *	http://en.wikipedia.org/wiki/GNU_General_Public_License
  */
 
-
 (function( $ )
 {
 	if ( $.fn.dotdotdot )
@@ -24,7 +23,10 @@
 	{
 		if ( this.length == 0 )
 		{
-			debug( true, 'No element found for "' + this.selector + '".' );
+			if ( !o || o.debug !== false )
+			{
+				debug( true, 'No element found for "' + this.selector + '".' );				
+			}
 			return this;
 		}
 		if ( this.length > 1 )

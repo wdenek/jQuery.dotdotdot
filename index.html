@@ -7,7 +7,7 @@
 		<title>dotdotdot, advanced cross-browser ellipsis for multiple line content.</title>
 
  		<script type="text/javascript" language="javascript" src="jquery-1.8.3.min.js"></script>
-		<script type="text/javascript" language="javascript" src="jquery.dotdotdot-1.5.6-packed.js"></script>
+		<script type="text/javascript" language="javascript" src="jquery.dotdotdot-1.5.7.js"></script>
 		<script type="text/javascript" language="javascript">
 			$(function() {
 				$('#dot1').dotdotdot();
@@ -17,6 +17,18 @@
 				});
 				$('#dot4').dotdotdot({
 					watch: 'window'
+				});
+				$('#dot5 .pathname').each(function() {
+					var path = $(this).html().split( '/' );
+					if ( path.length > 1 ) {
+						var name = path.pop();
+						$(this).html( '<span>' + path.join( '/' ) + '</span><span class="filename">/' + name + '</span>' );
+						$(this).dotdotdot({
+							after: 'span.filename',
+							wrap: 'letter',
+							height: 25
+						});						
+					}
 				});
 			});
 		</script>
@@ -45,7 +57,7 @@
 			#wrapper {
 				background-color: #fff;
 				width: 600px;
-				padding: 50px 50px 150px 50px;
+				padding: 50px 50px 0 50px;
 				margin: 0 auto;
 				border: 1px solid #ccc;
 				box-shadow: 0 0 5px #ccc;
@@ -82,6 +94,9 @@
 				padding: 15px 20px 10px 20px;
 /* 				overflow: hidden; */
 			}
+			div.resize {
+				padding-bottom: 250px;
+			}
 			div.resize div.box {
 				position: absolute;
 				width: 40%;
@@ -106,6 +121,10 @@
 			}
 			p.after {
 				color: #006600;
+			}
+			span.pathname {
+				display: block;
+				margin-top: 10px;
 			}
 		</style>
 	</head>
@@ -180,6 +199,26 @@
 				</div>
 				<div class="c"></div>
 			</div>
+
+			<div class="example">
+				<p><strong>Truncate readable pathnames</strong></p>
+				<div class="l">
+					<p class="before">before:</p>
+					<div class="box before">
+						<span class="pathname">www.website.com</span>
+						<span class="pathname">www.website.com/with/a/long/pathname/that/should/be/truncated/before/the/file.html</span>
+					</div>
+				</div>
+				<div class="r">
+					<p class="after">after:</p>
+					<div class="box after" id="dot5">
+						<span class="pathname">www.website.com</span>
+						<span class="pathname">www.website.com/with/a/long/pathname/that/should/be/truncated/before/the/file.html</span>
+					</div>
+				</div>
+				<div class="c"></div>
+			</div>
+
 		</div>
 		<br />
 		<br />
