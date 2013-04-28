@@ -22,11 +22,10 @@
 					var path = $(this).html().split( '/' );
 					if ( path.length > 1 ) {
 						var name = path.pop();
-						$(this).html( '<span>' + path.join( '/' ) + '</span><span class="filename">/' + name + '</span>' );
+						$(this).html( path.join( '/' ) + '<span class="filename">/' + name + '</span>' );
 						$(this).dotdotdot({
-							after: 'span.filename',
-							wrap: 'letter',
-							height: 25
+							after: '.filename',
+							wrap: 'letter'
 						});						
 					}
 				});
@@ -122,9 +121,8 @@
 			p.after {
 				color: #006600;
 			}
-			span.pathname {
-				display: block;
-				margin-top: 10px;
+			.pathname {
+				height: 25px;
 			}
 		</style>
 	</head>
@@ -205,15 +203,15 @@
 				<div class="l">
 					<p class="before">before:</p>
 					<div class="box before">
-						<span class="pathname">www.website.com</span>
-						<span class="pathname">www.website.com/with/a/long/pathname/that/should/be/truncated/before/the/file.html</span>
+						<div class="pathname">www.website.com/file.html</div>
+						<div class="pathname">www.website.com/with/a/long/pathname/that/should/be/truncated/before/the/file.html</div>
 					</div>
 				</div>
 				<div class="r">
 					<p class="after">after:</p>
 					<div class="box after" id="dot5">
-						<span class="pathname">www.website.com</span>
-						<span class="pathname">www.website.com/with/a/long/pathname/that/should/be/truncated/before/the/file.html</span>
+						<div class="pathname">www.website.com/file.html</div>
+						<div class="pathname">www.website.com/with/a/long/pathname/that/should/be/truncated/before/the/file.html</div>
 					</div>
 				</div>
 				<div class="c"></div>
