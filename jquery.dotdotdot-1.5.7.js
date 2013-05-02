@@ -414,12 +414,14 @@
 			}
 			else
 			{
-				var e = $w.prev().contents().eq( -1 )[ 0 ];
+				var $p = $w.prev()
+				var e = $p.contents().eq( -1 )[ 0 ];
 
 				if ( typeof e != 'undefined' )
 				{
 					var txt = addEllipsis( getTextContent( e ), o );
 					setTextContent( e, txt );
+					$p.append(after);
 					$w.remove();
 					isTruncated = true;
 				}
