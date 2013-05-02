@@ -421,7 +421,7 @@
 				{
 					var txt = addEllipsis( getTextContent( e ), o );
 					setTextContent( e, txt );
-					$p.append(after);
+					if (after) $p.append(after);
 					$w.remove();
 					isTruncated = true;
 				}
