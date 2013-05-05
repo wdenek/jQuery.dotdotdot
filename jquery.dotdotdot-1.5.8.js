@@ -1,5 +1,5 @@
 /*	
- *	jQuery dotdotdot 1.5.7
+ *	jQuery dotdotdot 1.5.8
  *	
  *	Copyright (c) 2013 Fred Heusschen
  *	www.frebsite.nl
@@ -421,7 +421,10 @@
 				{
 					var txt = addEllipsis( getTextContent( e ), o );
 					setTextContent( e, txt );
-					if (after) $p.append(after);
+					if ( after )
+					{
+						$p.append( after );
+					}
 					$w.remove();
 					isTruncated = true;
 				}
