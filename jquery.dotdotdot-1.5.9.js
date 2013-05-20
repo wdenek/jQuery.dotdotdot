@@ -1,5 +1,5 @@
 /*	
- *	jQuery dotdotdot 1.5.8
+ *	jQuery dotdotdot 1.5.9
  *	
  *	Copyright (c) 2013 Fred Heusschen
  *	www.frebsite.nl
@@ -46,6 +46,9 @@
 		{
 			$dot.trigger( 'destroy.dot' );
 		}
+
+		$dot.data( 'dotdotdot-style', $dot.attr( 'style' ) );
+		$dot.css( 'word-wrap', 'break-word' );
 
 		$dot.bind_events = function()
 		{
@@ -155,6 +158,7 @@
 						.unbind_events()
 						.empty()
 						.append( orgContent )
+						.attr( 'style', $dot.data( 'dotdotdot-style' ) )
 						.data( 'dotdotdot', false );
 				}
 			);
