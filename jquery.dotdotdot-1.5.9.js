@@ -261,7 +261,7 @@
 		'ellipsis'	: '... ',
 		'wrap'		: 'word',
 		'lastCharacter': {
-			'remove'		: [ ' ', ',', ';', '.', '!', '?' ],
+			'remove'		: [ ' ', '\u3000', ',', ';', '.', '!', '?' ],
 			'noEllipsis'	: []
 		},
 		'tolerance'	: 0,
@@ -369,8 +369,10 @@
 			return false;
 		}
 
-		var seporator	= ( o.wrap == 'letter' ) ? '' : ' ',
-			textArr		= getTextContent( e ).split( seporator ),
+		var txt			= getTextContent( e ),
+			space		= ( txt.indexOf(' ') !== -1 ) ? ' ' : '\u3000',
+			seporator	= ( o.wrap == 'letter' ) ? '' : space,
+			textArr		= txt.split( seporator ),
 			position 	= -1,
 			midPos		= -1,
 			startPos	= 0,
@@ -400,7 +402,7 @@
 	
 		if ( position != -1 && !( textArr.length == 1 && textArr[ 0 ].length == 0 ) )
 		{
-			var txt = addEllipsis( textArr.slice( 0, position + 1 ).join( seporator ), o );
+			txt = addEllipsis( textArr.slice( 0, position + 1 ).join( seporator ), o );
 			isTruncated = true;
 			setTextContent( e, txt );
 		}
