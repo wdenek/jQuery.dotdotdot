@@ -302,7 +302,7 @@
 			{
 				if ( after )
 				{
-					after.remove();
+					after.detach();
 				}
 			}
 		}
@@ -353,7 +353,7 @@
 			{
 				if ( after )
 				{
-					after.remove();
+					after.detach();
 				}
 			}
 		}
