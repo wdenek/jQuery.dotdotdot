@@ -1,5 +1,5 @@
 /*	
- *	jQuery dotdotdot 1.5.10
+ *	jQuery dotdotdot 1.5.11
  *	
  *	Copyright (c) 2013 Fred Heusschen
  *	www.frebsite.nl
@@ -238,6 +238,17 @@
 			watchInt	= null,
 			$inr		= null;
 
+
+		if ( !( opts.lastCharacter.remove instanceof Array ) )
+		{
+			opts.lastCharacter.remove = $.fn.dotdotdot.defaultArrays.lastCharacter.remove;
+		}
+		if ( !( opts.lastCharacter.noEllipsis instanceof Array ) )
+		{
+			opts.lastCharacter.noEllipsis = $.fn.dotdotdot.defaultArrays.lastCharacter.noEllipsis;
+		}
+
+
 		conf.afterElement	= getElement( opts.after, $dot );
 		conf.isTruncated	= false;
 		conf.dotId			= dotId++;
@@ -258,21 +269,27 @@
 
 	//	public
 	$.fn.dotdotdot.defaults = {
-		'ellipsis'	: '... ',
-		'wrap'		: 'word',
-		'lastCharacter': {
-			'remove'		: [ ' ', '\u3000', ',', ';', '.', '!', '?' ],
-			'noEllipsis'	: []
+		'ellipsis'			: '... ',
+		'wrap'				: 'word',
+		'lastCharacter'		: {
+//			'remove'			: [ ' ', '\u3000', ',', ';', '.', '!', '?' ],
+//			'noEllipsis'		: []
 		},
-		'tolerance'	: 0,
-		'callback'	: null,
-		'after'		: null,
-		'height'	: null,
-		'watch'		: false,
-		'windowResizeFix': true,
-		'debug'		: false
+		'tolerance'			: 0,
+		'callback'			: null,
+		'after'				: null,
+		'height'			: null,
+		'watch'				: false,
+		'windowResizeFix'	: true,
+		'debug'				: false
 	};
-	
+	$.fn.dotdotdot.defaultArrays = {
+		'lastCharacter'		: {
+			'remove'			: [ ' ', '\u3000', ',', ';', '.', '!', '?' ],
+			'noEllipsis'		: []
+		}
+	};
+
 
 	//	private
 	var dotId = 1;
