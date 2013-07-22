@@ -271,6 +271,7 @@
 	$.fn.dotdotdot.defaults = {
 		'ellipsis'			: '... ',
 		'wrap'				: 'word',
+        'fallbackToLetter'  : 'letter',
 		'lastCharacter'		: {
 //			'remove'			: [ ' ', '\u3000', ',', ';', '.', '!', '?' ],
 //			'noEllipsis'		: []
@@ -388,8 +389,8 @@
 
 		var txt			= getTextContent( e ),
 			space		= ( txt.indexOf(' ') !== -1 ) ? ' ' : '\u3000',
-			seporator	= ( o.wrap == 'letter' ) ? '' : space,
-			textArr		= txt.split( seporator ),
+			separator	= ( o.wrap == 'letter' ) ? '' : space,
+			textArr		= txt.split( separator ),
 			position 	= -1,
 			midPos		= -1,
 			startPos	= 0,
@@ -404,7 +405,7 @@
 			}
 			midPos = m;
 
-			setTextContent( e, textArr.slice( 0, midPos + 1 ).join( seporator ) + o.ellipsis );
+			setTextContent( e, textArr.slice( 0, midPos + 1 ).join( separator ) + o.ellipsis );
 
 			if ( !test( $i, o ) )
 			{
@@ -414,12 +415,21 @@
 			else
 			{
 				endPos = midPos;
-			}				
-		}	
+			}
+            if(endPos == startPos && endPos == 0 && o.fallbackToLetter)
+            {
+                separator = '';
+                textArr = textArr[0].split(separator);
+                position 	= -1;
+                midPos		= -1;
+                startPos	= 0;
+                endPos		= textArr.length - 1;
+            }
+        }
 	
 		if ( position != -1 && !( textArr.length == 1 && textArr[ 0 ].length == 0 ) )
 		{
-			txt = addEllipsis( textArr.slice( 0, position + 1 ).join( seporator ), o );
+			txt = addEllipsis( textArr.slice( 0, position + 1 ).join( separator ), o );
 			isTruncated = true;
 			setTextContent( e, txt );
 		}
