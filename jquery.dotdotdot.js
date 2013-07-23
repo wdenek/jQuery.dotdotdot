@@ -1,5 +1,5 @@
 /*	
- *	jQuery dotdotdot 1.5.11
+ *	jQuery dotdotdot 1.6.0
  *	
  *	Copyright (c) 2013 Fred Heusschen
  *	www.frebsite.nl
@@ -271,11 +271,8 @@
 	$.fn.dotdotdot.defaults = {
 		'ellipsis'			: '... ',
 		'wrap'				: 'word',
-        'fallbackToLetter'  : 'letter',
-		'lastCharacter'		: {
-//			'remove'			: [ ' ', '\u3000', ',', ';', '.', '!', '?' ],
-//			'noEllipsis'		: []
-		},
+		'fallbackToLetter'	: true,
+		'lastCharacter'		: {},
 		'tolerance'			: 0,
 		'callback'			: null,
 		'after'				: null,
@@ -416,14 +413,14 @@
 			{
 				endPos = midPos;
 			}
-            if(endPos == startPos && endPos == 0 && o.fallbackToLetter)
+            if( endPos == startPos && endPos == 0 && o.fallbackToLetter )
             {
-                separator = '';
-                textArr = textArr[0].split(separator);
-                position 	= -1;
-                midPos		= -1;
-                startPos	= 0;
-                endPos		= textArr.length - 1;
+				separator	= '';
+				textArr		= textArr[0].split(separator);
+				position 	= -1;
+				midPos		= -1;
+				startPos	= 0;
+				endPos		= textArr.length - 1;
             }
         }
 	
