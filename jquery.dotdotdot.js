@@ -393,7 +393,7 @@
 			startPos	= 0,
 			endPos		= textArr.length - 1;
 
-		while ( startPos <= endPos )
+		while ( startPos <= endPos && !(startPos == 0 && endPos == 0))
 		{
 			var m = Math.floor( ( startPos + endPos ) / 2 );
 			if ( m == midPos ) 
